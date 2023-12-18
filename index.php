@@ -6,7 +6,7 @@ function fibonacciNumbers(int $maxVal): iterator
     $fN = 0;
     $fN1 = 1;
     $fN2 = 1;
-    for ($i = 1; ($fN <= $maxVal) && ($maxVal != 0); $i++) {
+    for ($i = 1; $fN <= $maxVal; $i++) {
         if (($i > 1) && ($i <= 3)) {
             $fN = 1;
         } elseif ($i > 3) {
@@ -22,7 +22,7 @@ function fibonacciNumbers(int $maxVal): iterator
     }
 }
 
-$maxVal = (int) readline("Введіть максимальне значення послідовності Фібоначчі (від \"1\" і вище): ");
+$maxVal = (int) readline("Введіть максимальне значення послідовності Фібоначчі (від \"0\" і вище): ");
 echo "Згенерована послідовність Фібоначчі: ";
 foreach (fibonacciNumbers($maxVal) as $key => $value) {
     if ($key === array_key_last(iterator_to_array(fibonacciNumbers($maxVal)))) {
@@ -31,6 +31,6 @@ foreach (fibonacciNumbers($maxVal) as $key => $value) {
         echo "$value; ";
     }
 }
-if ($maxVal <= 0) {
+if ($maxVal < 0) {
     echo "Ви ввели неправильне максимальне значення.";
 }
