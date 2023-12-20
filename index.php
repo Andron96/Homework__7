@@ -6,18 +6,23 @@ function fibonacciNumbers(int $maxVal): iterator
     $fN = 0;
     $fN1 = 1;
     $fN2 = 1;
-    for ($i = 1; $fN <= $maxVal; $i++) {
-        if (($i > 1) && ($i <= 3)) {
-            $fN = 1;
-        } elseif ($i > 3) {
-            $fN = $fN1 + $fN2;
-        }
-        $fN2 = $fN1;
-        $fN1 = $fN;
-        if ($fN <= $maxVal) {
-            yield $fN;
-        } else {
-            break;
+    if ($maxVal >= 0) {
+        yield $fN;
+        if ($maxVal >= 1) {
+            yield $fN1;
+            yield $fN2;
+            if ($maxVal >= 2) {
+                while (true) {
+                    $fN = $fN1 + $fN2;
+                    $fN2 = $fN1;
+                    $fN1 = $fN;
+                    if ($fN <= $maxVal) {
+                        yield $fN;
+                    } else {
+                        break;
+                    }
+                }
+            }
         }
     }
 }
